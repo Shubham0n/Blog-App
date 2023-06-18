@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block bloggers_details %}
+
+<body>
+    <div class="container">
+        <div id="logo">
+            {% for x in blogger %}
+            <h1 class="site-name">
+                {{ x.first_name }} {{ x.last_name }}
+            </h1>
+            <div class="tagline">{{ x.is_role }}</div>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Email</td>
+                        <td>{{ x.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Date Of Birth</td>
+                        <td>{{ x.date_of_birth }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="logo">
+            <h1 class="site-name">
+                Blog List
+            </h1>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x in blogs %}
+            <tr>
+                <td><a href="{% url 'bloginfo' x.id %}">{{ x.blog_title }}</a></td>
+                <td>{{ x.blog_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+{% endblock bloggers_details %}

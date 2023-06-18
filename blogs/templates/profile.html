@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block profile %}
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class="fadeIn fourth" value="Update">
+            </form>
+        </div>
+    </div>
+{% endblock profile %}

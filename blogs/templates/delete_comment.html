@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block delete_comment %}
+
+<body>
+    <div id="secondary" class="widget-area col-sm-12 col-md-5" role="complementary">
+        <div class="inner">
+            <aside id="activello_recent_posts-2" class="widget activello-recent-posts">
+                <div class="recent-posts-wrapper">
+                    <h3 class="widget-title">Delete Comment</h3>
+                    {% for y in comment %}
+                    <div class="post">
+                        <div class="post-content">
+                            <h5 class="cat-item-38">{{ y.comment }}</h5>
+                            <span class="posted-on">- Posted by {{y.created_by}}</span>
+                            <span class="date">- {{ y.comment_date }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </aside>
+            <div class="read-more">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" class="fadeIn fourth" value="Delete Comment">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock delete_comment %}

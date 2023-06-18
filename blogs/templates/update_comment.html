@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block update_comment %}
+
+
+<div class="container main-content-area">
+    <div class="row">
+        <div class="main-content-inner col-sm-12 col-md-8 side-right">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main page-1" role="main">
+                    <div class="article-container">
+                        <article id="post-358"
+                            class="post-358 post type-post status-publish format-standard has-post-thumbnail hentry category-post-formats tag-post-formats tag-readability tag-standard-2">
+                            {% for x in comments %}
+                            <div class="blog-item-wrap">
+                                <div class="post-inner-content">
+                                    <header class="entry-header page-header">
+                                        <ul class="single-category">
+
+                                            <li class="cat-item cat-item-38"><a href=""
+                                                    title="Posts in this category test post formats.">Blog Post
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <h2 class="entry-title">{{x.blog_title}}</h2>
+                                        <div class="entry-meta">
+                                            <span class="posted-on">{{ x.blog_date }}</span>
+                                        </div>
+                                    </header>
+                                    <div class="entry-content">
+                                        <p>{{ x.blog_content }}</p>
+                                        <div class="post-content">
+                                            <a href="{% url 'blogger' x.created_by.id %}">
+                                                <h4 class="cat-item-38">- By {{ x.created_by }}</h4>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </article>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <div id="secondary" class="widget-area col-sm-12 col-md-5" role="complementary">
+        <div class="inner">
+            <aside id="activello_recent_posts-2" class="widget activello-recent-posts">
+                <div class="recent-posts-wrapper">
+                    <h3 class="widget-title">Update Comment</h3>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" class="fadeIn fourth" value="Update Comment">
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    {% endblock update_comment %}

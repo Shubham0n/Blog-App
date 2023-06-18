@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block home %}
+
+<body class="home blog wp-custom-logo has-sidebar-right half-posts elementor-default elementor-kit-2114">
+
+    <div class="container">
+        <div id="logo">
+            <h1 class="site-name">
+                {% if user.is_blogger %}
+                {{ user.first_name }}'s Blogging Site
+                {% else %}
+                Blogging Site
+                {% endif %}
+            </h1>
+            <div class="tagline">Just another</div>
+        </div>
+    </div>
+
+    <div class="container main-content-area">
+        <div class="row">
+            <div class="main-content-inner col-sm-12 col-md-8 side-right">
+                <div id="primary" class="content-area">
+                    <main id="main" class="site-main page-1" role="main">
+                        <div class="article-container">
+                            <article id="post-358"
+                                class="post-358 post type-post status-publish format-standard has-post-thumbnail hentry category-post-formats tag-post-formats tag-readability tag-standard-2">
+                                {% for x in rendom_blogs %}
+                                <div class="blog-item-wrap">
+                                    <div class="post-inner-content">
+                                        <header class="entry-header page-header">
+                                            <ul class="single-category">
+
+                                                <li class="cat-item cat-item-38"><a href="/"
+                                                        title="Posts in this category test post formats.">Blog Post
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <h2 class="entry-title"><a href="{% url 'bloginfo' x.id %}"
+                                                    rel="bookmark">{{x.blog_title}}
+                                                </a></h2>
+                                            <div class="entry-meta">
+                                                <span class="posted-on">Posted on {{ x.blog_date }} by
+                                                    <a
+                                                        href="{% url 'blogger' x.created_by.id %}">{{x.created_by}}</a></span>
+                                            </div>
+                                        </header>
+                                        <div class="entry-content">
+                                            <p>{{ x.blog_content|truncatewords:100 }}</p>
+                                            <div class="read-more">
+                                                <a href="{% url 'bloginfo' x.id %}" title="Post Format: Standard">Read
+                                                    More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </article>
+                        </div>
+                    </main>
+                </div>
+            </div>
+            <div id="secondary" class="widget-area col-sm-12 col-md-4" role="complementary">
+                <div class="inner">
+                    <aside id="activello_recent_posts-2" class="widget activello-recent-posts">
+
+                        <div class="recent-posts-wrapper">
+                            <h3 class="widget-title">Recent Posts</h3>
+                            {% for x in blogs %}
+                            <div class="post">
+                                <div class="post-content">
+                                    <a href="{% url 'bloginfo' x.id %}">{{ x.blog_title }}</a>
+                                    <span class="posted-on">- Posted by {{x.created_by}}</span>
+                                    <span class="date">- {{ x.blog_date }}</span>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-area">
+        <footer id="colophon" class="site-footer" role="contentinfo">
+            <div class="site-info container">
+                <div class="row">
+                    <div class="copyright col-md-12">
+                        <a href="/" target="_blank">Bloging Site -</a> Powered by <a href="/" target="_blank">Shubham</a>
+                    </div>
+                </div>
+            </div>
+            <button class="scroll-to-top" style="display: none;"><i class="fa fa-angle-up"></i></button>
+        </footer>
+    </div>
+
+</body>
+
+</html>
+
+{% endblock home %}

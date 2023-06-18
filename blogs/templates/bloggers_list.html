@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block bloggers_list %}
+
+<body>
+    <div class="container">
+        <div id="logo">
+            <h1 class="site-name">
+                Blogging List
+            </h1>
+        </div>
+    </div>
+    
+    <table class="table table-hover">
+        {% for x in blogger %}
+        <tr>
+            <td>
+                <a href="{% url 'blogger' x.id %}">{{ x.first_name }} {{ x.last_name }}</a>
+            </td>
+            {% if user.is_superuser %}
+            <td> <a href="{% url 'update_blogger' x.id %}"><button>Edit</button></a></td>
+            <td> <a href="{% url 'delete_blogger' x.id %}"><button>Delete</button></a></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+{% endblock bloggers_list %}

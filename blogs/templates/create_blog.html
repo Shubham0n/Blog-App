@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block add_blogs %}
+
+<body>
+    <h1>add_blogs Page</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="fadeIn fourth" value="Add">
+    </form>
+</body>
+    
+{% endblock add_blogs %}
+    

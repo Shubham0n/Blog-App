@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block delete_user %}
+
+<body>
+    <div id="secondary" class="widget-area col-sm-12 col-md-5" role="complementary">
+        <div class="inner">
+            <aside id="activello_recent_posts-2" class="widget activello-recent-posts">
+                <div class="recent-posts-wrapper">
+                    <h3 class="widget-title">Delete Comment</h3>
+                    {% for x in user %}
+                    <div class="post">
+                        <div class="post-content">
+                            <h5 class="cat-item-38">{{ x.get_full_name }} ( {{ x.username }} )</h5>
+                            <h5 class="posted-on">{{x.email}}</h5>
+                            <h5 class="cat-item-38">- {{ x.date_of_birth }}</h5>
+                            {% if x.is_blogger == True %}
+                            <h5 class="cat-item-38">- Blogger</h5>
+                            {% endif %}
+                            <h5 class="cat-item-38">- {{ x.date_joined }}</h5>
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <input type="submit" class="fadeIn fourth" value="Delete User">
+                            </form>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </aside>
+        </div>
+    </div>
+</body>
+
+{% endblock delete_user %}

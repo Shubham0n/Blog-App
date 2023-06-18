@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block update_user %}
+
+<div id="secondary" class="widget-area col-sm-12 col-md-5" role="complementary">
+    <div class="inner">
+        <aside id="activello_recent_posts-2" class="widget activello-recent-posts">
+            <div class="recent-posts-wrapper">
+                <h3 class="widget-title">Update Blogger</h3>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" class="fadeIn fourth" value="Update">
+                </form>
+            </div>
+        </aside>
+    </div>
+</div>
+
+{% endblock update_user %}
+    

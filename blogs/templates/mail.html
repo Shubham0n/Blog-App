@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <br>
+    <h1>Welcome in Blogging-Site</h1>
+    <h3>Shipping Details:</h3>
+
+    {{ context.first_name }} </br>
+    {{ context.last_name }} <br />
+    {{ context.date_of_birth }} <br />
+
+    <h2>Order Details:</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Birth-Date</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>{{ context.first_name }} {{ context.last_name }}</td>
+                <td>{{ context.date_of_birth }}</td>
+                <td>{{ context.email }}</td>
+                <td>{{ context.is_role }}</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

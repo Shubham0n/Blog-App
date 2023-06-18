@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block blogs_list %}
+
+<body>
+    <div class="container">
+        <div id="logo">
+            <h1 class="site-name">
+                Blog List
+            </h1>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Author</th>
+                {% if user.is_superuser %}
+                <th>Edit</th>
+                <th>Delete</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for x in blogs %}
+            <tr>
+                <td><a href="{% url 'bloginfo' x.id %}">{{ x.blog_title }}</a></td>
+                <td>{{ x.blog_date }}</td>
+                <td><a href="{% url 'blogger' x.created_by.id %}">{{x.created_by}}</a></td>
+                <!-- {% comment %}
+                {% if x.created_by.id == user.id or user.is_superuser%}
+                {% endcomment %} -->
+                {% if user.is_superuser %}
+                <td> <a href="{% url 'update_blog' x.id %}"><button>Edit</button></a></td>
+                <td> <a href="{% url 'delete_blog' x.id %}"><button>Delete</button></a></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if is_paginated %}
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+        <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in paginator.page_range %}
+        {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+        <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+        {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+    </ul>
+    {% endif %}
+</body>
+
+{% endblock blogs_list %}

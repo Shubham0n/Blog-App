@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+
+{% block delete_blog %}
+<div id="secondary" class="widget-area col-sm-12 col-md-5" role="complementary">
+    <div class="inner">
+        <aside id="activello_recent_posts-2" class="widget activello-recent-posts">
+            <div class="recent-posts-wrapper">
+                <h3 class="widget-title">Delete Blog</h3>
+            </div>
+        </aside>
+    </div>
+</div>
+
+<div class="container main-content-area">
+    <div class="row">
+        <div class="main-content-inner col-sm-12 col-md-8 side-right">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main page-1" role="main">
+                    <div class="article-container">
+                        <article id="post-358"
+                            class="post-358 post type-post status-publish format-standard has-post-thumbnail hentry category-post-formats tag-post-formats tag-readability tag-standard-2">
+                            {% for x in blog %}
+                            <div class="blog-item-wrap">
+                                <div class="post-inner-content">
+                                    <header class="entry-header page-header">
+                                        <h2 class="entry-title">{{x.blog_title}}</h2>
+                                        <div class="entry-meta">
+                                            <span class="posted-on">{{ x.blog_date }}</span>
+                                        </div>
+                                    </header>
+                                    <div class="entry-content">
+                                        <p>{{ x.blog_content }}</p>
+                                        <div class="post-content">
+                                            <a href="{% url 'blogger' x.created_by.id %}"><h4 class="cat-item-38">- By {{ x.created_by }}</h4></a> 
+                                        </div>
+                                        <div class="read-more">
+                                            <form action="" method="POST">
+                                                {% csrf_token %}
+                                                <input type="submit" class="fadeIn fourth" value="Delete Blog">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </article>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock delete_blog %}
+    
